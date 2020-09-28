@@ -20,8 +20,6 @@ puts "#{player2_name} goes first!"
 
 # game starts
 
-chosen_field = gets.chomp.to_i
-
 puts "#{player1_name} goes next!"
 puts "#{player2_name} goes next!"
 
