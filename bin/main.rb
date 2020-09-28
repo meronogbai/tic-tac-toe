@@ -12,7 +12,7 @@ amount_players = gets.chomp
 puts "What is Player 1's name?"
 player1_name = gets.chomp
 
-puts 'What is Player 2's name?'
+puts "What is Player 2's name?"
 player2_name = gets.chomp
 
 puts 'Input a number from 1 to 9 to choose a field!'
