@@ -5,10 +5,6 @@
 puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
-puts 'How many players?'
-# rubocop:enable Metrics/UselessAssignment
-amount_players = gets.chomp
-# rubocop:disable Metrics/UselessAssignment
 puts "What is Player 1's name?"
 player1_name = gets.chomp
 
@@ -37,4 +33,3 @@ puts "#{player1_name} wins!"
 puts "#{player2_name} wins!"
 
 puts "It's a draw!"
-
