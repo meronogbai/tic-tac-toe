@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require './lib/game_logic.rb'
-include Test
+
 
 # intro to the game
 
@@ -9,13 +9,13 @@ puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
 puts "What is Player 1's name?"
-player1_name = gets.chomp
+player_1 = gets.chomp
 
 puts "What is Player 2's name?"
-player2_name = gets.chomp
+player_2 = gets.chomp
 
 # random player goes first
-players = random_player_start(player1_name, player2_name)
+players = random_player_start(player_1, player_2)
 starting_player = players[0]
 second_player = players[1]
 puts "#{starting_player} will start"

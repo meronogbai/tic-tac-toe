@@ -1,59 +1,63 @@
-module Test
-  WIN_CONDITIONS = [[1, 2, 3],
-                    [4, 5, 6],
-                    [7, 8, 9],
-                    [1, 5, 9],
-                    [3, 5, 7],
-                    [1, 4, 7],
-                    [2, 5, 8],
-                    [3, 6, 9]].freeze
+WIN_CONDITIONS = [[1, 2, 3],
+                  [4, 5, 6],
+                  [7, 8, 9],
+                  [1, 5, 9],
+                  [3, 5, 7],
+                  [1, 4, 7],
+                  [2, 5, 8],
+                  [3, 6, 9]].freeze
+def random_player_start(player_1, player_2)
+  players = [player_1, player_2]
+  players.shuffle
+end
 
-  def random_player_start(player_1, player_2)
-    players = [player_1, player_2]
-    players.shuffle
-  end
+def validation(move)
+  (1..9).include?(move)
+end
 
-  def validation(move)
-    (1..9).include?(move)
-  end
-
-  def field_validation(move, taken_fields)
-    if (1..9).include?(move)
-      if taken_fields.include?(move)
-        'Taken Field Error'
-      else
-        taken_fields.push(move)
-      end
+def field_validation(move, taken_fields)
+  if (1..9).include?(move)
+    if taken_fields.include?(move)
+      'Taken Field Error'
     else
-      'No Integer Error'
+      taken_fields.push(move)
     end
+  else
+    'No Integer Error'
   end
+end
 
-  def split_player_moves(taken_fields)
-    first_player_moves, second_player_moves = taken_fields.partition.with_index { |_, i| i.even? }
-    [first_player_moves, second_player_moves]
-  end
+def split_player_moves(taken_fields)
+  first_player_moves, second_player_moves = taken_fields.partition.with_index { |_, i| i.even? }
+  [first_player_moves, second_player_moves]
+end
 
-  def did_i_win(taken_fields)
-    arr = split_player_moves(taken_fields)
-    if taken_fields.length % 2 == 0
-      "Player 2 wins" if WIN_CONDITIONS.include?(arr[1])
-    else
-      "Player 1 wins" if WIN_CONDITIONS.include?(arr[0])
+def subset?(win, arr)
+  win.all? { |x| arr.include? x }
+end
+
+def did_i_win(taken_fields)
+  arr = split_player_moves(taken_fields)
+  if taken_fields.length.even?
+    WIN_CONDITIONS.each do |win|
+      return 'Player 2 wins' if subset?(win, arr[1])
     end
-  end
-
-  def who_is_next(taken_fields)
-    if taken_fields.length % 2 == 0
-      "starting player is next" 
-    else
-    "second player is next"
+  else
+    WIN_CONDITIONS.each do |win|
+      return 'Player 1 wins' if subset?(win, arr[0])
     end
+end
+end
+
+def who_is_next(taken_fields)
+  if taken_fields.length.even?
+    'starting player is next'
+  else
+    'second player is next'
   end
 end
 
 class Board
-  include Test
   def initialize
     @first = '   '
     @second = '   '
