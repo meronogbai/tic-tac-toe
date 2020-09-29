@@ -21,7 +21,7 @@ second_player = players[1]
 puts "#{starting_player} will start"
 
 # game starts
-taken_fields = []
+taken_fields = [7, 5, 2, 1, 8, 4, 6, 9]
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
@@ -35,6 +35,7 @@ loop do
   else
     break
   end
+  
 end
 
 puts "#{second_player} goes next!"

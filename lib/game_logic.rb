@@ -20,10 +20,52 @@ module Test
     end
   end
 
+
+end
+
+class Board
+  
+
+  def fill_board(player, symbol, board)
+    player.each { |x|
+    case x
+    when 1
+      first = symbol
+    when 2
+      second = symbol
+    when 3
+      third = symbol
+    when 4
+      fourth = symbol
+    when 5
+      fifth = symbol
+    when 6
+      sixth = symbol
+    when 7
+      seventh = symbol
+    when 8
+      eighth = symbol
+    when 9
+      ninth = symbol
+    end
+  } 
+  end
+
   def display_board(taken_fields)
-    "#{} | #{} | #{}
-     #{} | #{} | #{}
-     #{} | #{} | #{}
-    "
+
+    board = "#{first} | #{second} | #{third}
+    #{fourth} | #{fifth} | #{sixth}
+    #{seventh} | #{eighth} | #{ninth}"
+
+    first_player_moves, second_player_moves = taken_fields.partition.with_index { |_,i| i.even? }
+
+    fill_board(first_player_moves, "x", board)
+    fill_board(second_player_moves, "o", board)
+
+    puts board
   end
 end
+
+include Test
+testrun = Board.new
+testrun.display_board([3, 2, 5, 7, 4, 8, 1, 9, 6])
