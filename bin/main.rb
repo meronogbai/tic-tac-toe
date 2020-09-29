@@ -2,20 +2,19 @@
 
 require './lib/game_logic.rb'
 
-
 # intro to the game
 
 puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
 puts "What is Player 1's name?"
-player_1 = gets.chomp
+first_player = gets.chomp
 
 puts "What is Player 2's name?"
-player_2 = gets.chomp
+second_player = gets.chomp
 
 # random player goes first
-players = random_player_start(player_1, player_2)
+players = random_player_start(first_player, second_player)
 starting_player = players[0]
 second_player = players[1]
 puts "#{starting_player} will start"
@@ -36,16 +35,16 @@ loop do
     next
   else
     board.display_board(taken_fields)
-    if did_i_win(taken_fields) == "Player 1 wins"
-      p "#{starting_player} wins the game!" 
+    if did_i_win(taken_fields) == 'Player 1 wins'
+      p "#{starting_player} wins the game!"
       break
-    elsif did_i_win(taken_fields) == "Player 2 wins"
+    elsif did_i_win(taken_fields) == 'Player 2 wins'
       p "#{second_player} wins the game!"
       break
     elsif taken_fields.length == 9
-      p "It's a draw!" 
+      p "It's a draw!"
     end
-    p "#{starting_player} is next!" if who_is_next(taken_fields) == "starting player is next"
-    p "#{second_player} is next!" if who_is_next(taken_fields) == "second player is next"
+    p "#{starting_player} is next!" if who_is_next(taken_fields) == 'starting player is next'
+    p "#{second_player} is next!" if who_is_next(taken_fields) == 'second player is next'
   end
 end

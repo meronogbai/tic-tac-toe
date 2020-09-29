@@ -6,8 +6,8 @@ WIN_CONDITIONS = [[1, 2, 3],
                   [1, 4, 7],
                   [2, 5, 8],
                   [3, 6, 9]].freeze
-def random_player_start(player_1, player_2)
-  players = [player_1, player_2]
+def random_player_start(first_player, second_player)
+  players = [first_player, second_player]
   players.shuffle
 end
 
@@ -46,7 +46,7 @@ def did_i_win(taken_fields)
     WIN_CONDITIONS.each do |win|
       return 'Player 1 wins' if subset?(win, arr[0])
     end
-end
+  end
 end
 
 def who_is_next(taken_fields)
@@ -70,31 +70,24 @@ class Board
     @ninth = '   '
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def fill_board(player, symbol)
     player.each do |x|
       case x
-      when 1
-        @first = symbol
-      when 2
-        @second = symbol
-      when 3
-        @third = symbol
-      when 4
-        @fourth = symbol
-      when 5
-        @fifth = symbol
-      when 6
-        @sixth = symbol
-      when 7
-        @seventh = symbol
-      when 8
-        @eighth = symbol
-      when 9
-        @ninth = symbol
+      when 1 then @first = symbol
+      when 2 then @second = symbol
+      when 3 then @third = symbol
+      when 4 then @fourth = symbol
+      when 5 then @fifth = symbol
+      when 6 then @sixth = symbol
+      when 7 then @seventh = symbol
+      when 8 then @eighth = symbol
+      when 9 then @ninth = symbol
       end
     end
   end
 
+  # rubocop:enable Metrics/CyclomaticComplexity
   def display_board(taken_fields)
     first_player_moves = split_player_moves(taken_fields)[0]
     second_player_moves = split_player_moves(taken_fields)[1]
