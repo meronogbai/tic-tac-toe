@@ -3,6 +3,8 @@ def random_player_start(player_1, player_2)
   players.shuffle
 end
 
-def game_start()
-  
+def validation(move)
+  (1..9).include?(move)
 end
+
+ 

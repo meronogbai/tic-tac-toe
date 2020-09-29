@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'lib/game_logic.rb'
+require './lib/game_logic.rb'
 
 # intro to the game
 
@@ -24,12 +24,14 @@ puts "#{starting_player} will start"
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
-  unless move == 0
-    puts "#{second_player} goes next!"
-    break
+  while validation(move) != true
+    puts 'Please input a valid number between 1 and 9!'
+    move = gets.chomp.to_i
   end
-end
 
+
+end
+puts "#{second_player} goes next!"
 puts 'This field is already taken!'
 
 puts 'Please input a valid number between 1 and 9!'
