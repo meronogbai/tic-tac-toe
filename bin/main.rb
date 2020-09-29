@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require './lib/game_logic.rb'
+include Test
 
 # intro to the game
 
@@ -24,17 +25,23 @@ puts "#{starting_player} will start"
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
-  while validation(move) != true
+  while field_validation(move, $taken_fields) != true
     puts 'Please input a valid number between 1 and 9!'
     move = gets.chomp.to_i
   end
 
+  while field_validation(move, $taken_fields) != true
+    puts 'This field is already taken!'
+    move = gets.chomp.to_i
+  end
 
 end
-puts "#{second_player} goes next!"
-puts 'This field is already taken!'
 
-puts 'Please input a valid number between 1 and 9!'
+puts "#{second_player} goes next!"
+
+
+
+
 
 puts "#{player1_name} wins!"
 puts "#{player2_name} wins!"
