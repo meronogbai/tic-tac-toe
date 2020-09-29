@@ -21,8 +21,11 @@ second_player = players[1]
 puts "#{starting_player} will start"
 
 # game starts
-taken_fields = [7, 5, 2, 1, 8, 4, 6, 9]
+
+taken_fields = [3, 8, 6, 4]
+board = Board.new
 loop do
+  player = starting_player
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
   case field_validation(move, taken_fields)
@@ -33,14 +36,8 @@ loop do
     puts 'This field is taken.'
     next
   else
+    board.display_board(taken_fields)
+    p 'I won!!' if did_i_win(taken_fields)
     break
   end
-  
 end
-
-puts "#{second_player} goes next!"
-
-puts "#{player1_name} wins!"
-puts "#{player2_name} wins!"
-
-puts "It's a draw!"
