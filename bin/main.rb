@@ -43,6 +43,7 @@ loop do
       break
     elsif taken_fields.length == 9
       p "It's a draw!"
+      break
     end
     p "#{starting_player} is next!" if who_is_next(taken_fields) == 'starting player is next'
     p "#{second_player} is next!" if who_is_next(taken_fields) == 'second player is next'
