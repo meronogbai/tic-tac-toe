@@ -1,3 +1,28 @@
+class Player
+  attr_reader :name, :names
+  @names = []
+  def initialize
+    loop do
+      @name = gets.chomp
+      if @name.to_i && !@name.empty? && !self.class.names.include?(@name)
+        self.class.names.push(@name)
+        break
+      else
+        puts "Please input a valid name that's not an integer or empty or already taken."
+      end
+    end
+  end
+
+  class << self
+    attr_reader :names
+  end
+
+  def random_player_start(second_player)
+    players = [name, second_player.name]
+    players.shuffle
+  end
+end
+
 WIN_CONDITIONS = [[1, 2, 3],
                   [4, 5, 6],
                   [7, 8, 9],
@@ -6,10 +31,6 @@ WIN_CONDITIONS = [[1, 2, 3],
                   [1, 4, 7],
                   [2, 5, 8],
                   [3, 6, 9]].freeze
-def random_player_start(first_player, second_player)
-  players = [first_player, second_player]
-  players.shuffle
-end
 
 def validation(move)
   (1..9).include?(move)

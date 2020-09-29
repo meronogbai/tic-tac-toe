@@ -8,13 +8,12 @@ puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
 puts "What is Player 1's name?"
-first_player = gets.chomp
-
+first_player = Player.new
 puts "What is Player 2's name?"
-second_player = gets.chomp
+second_player = Player.new
 
 # random player goes first
-players = random_player_start(first_player, second_player)
+players = first_player.random_player_start(second_player)
 starting_player = players[0]
 second_player = players[1]
 puts "#{starting_player} will start"
