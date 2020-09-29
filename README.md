@@ -4,7 +4,7 @@ Ruby implementation of tic tac toe
 
 > This project was developed as a learning project part of the Microverse curriculum.
 
-![screenshot](./images/screenshot.png)
+![screenshot](screenshot.png)
 
 A Ruby implementation of Tic Tac Toe. In three steps we added the basic setup, the user interface and finally the logic behind the game. We used OOP to implement the game logic.
 
