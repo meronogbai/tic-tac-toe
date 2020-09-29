@@ -1,5 +1,4 @@
 module Test
-
   def random_player_start(player_1, player_2)
     players = [player_1, player_2]
     players.shuffle
@@ -11,16 +10,20 @@ module Test
 
   def field_validation(move, taken_fields)
     if (1..9).include?(move)
-      unless taken_fields.include?(move)
-        taken_fields.push(move)
+      if taken_fields.include?(move)
+        'Taken Field Error'
       else
-        return "Taken Field Error"
+        taken_fields.push(move)
       end
     else
-      return "No Integer Error"
+      'No Integer Error'
     end
   end
 
-
+  def display_board(taken_fields)
+    "#{} | #{} | #{}
+     #{} | #{} | #{}
+     #{} | #{} | #{}
+    "
+  end
 end
-

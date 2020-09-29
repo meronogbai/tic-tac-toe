@@ -21,7 +21,7 @@ second_player = players[1]
 puts "#{starting_player} will start"
 
 # game starts
-taken_fields = [1,2,3]
+taken_fields = []
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
@@ -36,11 +36,6 @@ loop do
     break
   end
 end
-
-# while field_validation(move, $taken_fields) != true
-#   puts 'This field is already taken!'
-#   move = gets.chomp.to_i
-# end
 
 puts "#{second_player} goes next!"
 
