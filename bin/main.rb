@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'lib/game_logic.rb'
+
 # intro to the game
 
 puts 'Welcome to Tic Tac Toe!'
@@ -11,17 +13,22 @@ player1_name = gets.chomp
 puts "What is Player 2's name?"
 player2_name = gets.chomp
 
-puts 'Input a number from 1 to 9 to choose a field!'
-
 # random player goes first
-
-puts "#{player1_name} goes first!"
-puts "#{player2_name} goes first!"
+players = random_player_start(player1_name,player2_name)
+starting_player = players[0]
+second_player = players[1]
+puts "#{starting_player} will start"
 
 # game starts
 
-puts "#{player1_name} goes next!"
-puts "#{player2_name} goes next!"
+loop do
+  puts 'Input a number from 1 to 9 to choose a field!'
+  move = gets.chomp.to_i
+  unless move == 0
+    puts "#{second_player} goes next!"
+    break
+  end
+end
 
 puts 'This field is already taken!'
 
