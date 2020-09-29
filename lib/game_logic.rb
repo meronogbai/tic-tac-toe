@@ -37,9 +37,17 @@ module Test
   def did_i_win(taken_fields)
     arr = split_player_moves(taken_fields)
     if taken_fields.length % 2 == 0
-      "Player 2 has won the game" if WIN_CONDITIONS.include?(arr[1])
+      "Player 2 wins" if WIN_CONDITIONS.include?(arr[1])
     else
-      "Player 1 has won the game" if WIN_CONDITIONS.include?(arr[0])
+      "Player 1 wins" if WIN_CONDITIONS.include?(arr[0])
+    end
+  end
+
+  def who_is_next(taken_fields)
+    if taken_fields.length % 2 == 0
+      "starting player is next" 
+    else
+    "second player is next"
     end
   end
 end
@@ -47,15 +55,15 @@ end
 class Board
   include Test
   def initialize
-    @first = ''
-    @second = ''
-    @third = ''
-    @fourth = ''
-    @fifth = ''
-    @sixth = ''
-    @seventh = ''
-    @eighth = ''
-    @ninth = ''
+    @first = '   '
+    @second = '   '
+    @third = '   '
+    @fourth = '   '
+    @fifth = '   '
+    @sixth = '   '
+    @seventh = '   '
+    @eighth = '   '
+    @ninth = '   '
   end
 
   def fill_board(player, symbol)
@@ -87,13 +95,13 @@ class Board
     first_player_moves = split_player_moves(taken_fields)[0]
     second_player_moves = split_player_moves(taken_fields)[1]
 
-    fill_board(first_player_moves, 'x')
-    fill_board(second_player_moves, 'o')
+    fill_board(first_player_moves, ' x ')
+    fill_board(second_player_moves, ' o ')
 
-    p "#{@first} | #{@second} | #{@third}"
-    p '-----------'
-    p "#{@fourth} | #{@fifth} | #{@sixth}"
-    p '-----------'
-    p "#{@seventh} | #{@eighth} | #{@ninth}"
+    puts "#{@first}|#{@second}|#{@third}"
+    puts '-----------'
+    puts "#{@fourth}|#{@fifth}|#{@sixth}"
+    puts '-----------'
+    puts "#{@seventh}|#{@eighth}|#{@ninth}"
   end
 end
