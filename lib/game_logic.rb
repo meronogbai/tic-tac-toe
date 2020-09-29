@@ -9,16 +9,15 @@ module Test
     (1..9).include?(move)
   end
 
-
-  $taken_fields = []
-
   def field_validation(move, taken_fields)
     if (1..9).include?(move)
       unless taken_fields.include?(move)
         taken_fields.push(move)
-        true
+      else
+        return "Taken Field Error"
       end
-      true
+    else
+      return "No Integer Error"
     end
   end
 

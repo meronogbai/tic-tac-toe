@@ -15,33 +15,34 @@ puts "What is Player 2's name?"
 player2_name = gets.chomp
 
 # random player goes first
-players = random_player_start(player1_name,player2_name)
+players = random_player_start(player1_name, player2_name)
 starting_player = players[0]
 second_player = players[1]
 puts "#{starting_player} will start"
 
 # game starts
-
+taken_fields = [1,2,3]
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
-  while field_validation(move, $taken_fields) != true
-    puts 'Please input a valid number between 1 and 9!'
-    move = gets.chomp.to_i
+  case field_validation(move, taken_fields)
+  when 'No Integer Error'
+    puts 'Not a valid number!'
+    next
+  when 'Taken Field Error'
+    puts 'This field is taken.'
+    next
+  else
+    break
   end
-
-  while field_validation(move, $taken_fields) != true
-    puts 'This field is already taken!'
-    move = gets.chomp.to_i
-  end
-
 end
 
+# while field_validation(move, $taken_fields) != true
+#   puts 'This field is already taken!'
+#   move = gets.chomp.to_i
+# end
+
 puts "#{second_player} goes next!"
-
-
-
-
 
 puts "#{player1_name} wins!"
 puts "#{player2_name} wins!"
