@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
-require './lib/player.rb'
-require './lib/game.rb'
-require './lib/board.rb'
+require_relative '../lib/player.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/board.rb'
 
 # intro to the game
 
 puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
-input = Proc.new {gets.chomp}
-error = Proc.new {puts "Please input a valid name that's not an integer or empty or already taken."}
+input = proc { gets.chomp }
+error = proc { puts "Please input a valid name that's not an integer or empty or already taken." }
 puts "What is Player 1's name?"
 first_player = Player.new(input, error)
 puts "What is Player 2's name?"
