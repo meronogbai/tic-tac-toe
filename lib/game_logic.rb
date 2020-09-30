@@ -1,10 +1,10 @@
 class Player
-  attr_reader :name, :names
+  attr_reader :name
   @names = []
   def initialize
     loop do
       @name = gets.chomp
-      if @name.to_i && !@name.empty? && !self.class.names.include?(@name)
+      if @name.to_i.zero? && !@name.empty? && !self.class.names.include?(@name)
         self.class.names.push(@name)
         break
       else
