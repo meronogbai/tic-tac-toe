@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
-require './lib/game_logic.rb'
+require './lib/player.rb'
+require './lib/game.rb'
+require './lib/board.rb'
 
 # intro to the game
 
@@ -8,9 +10,9 @@ puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
 puts "What is Player 1's name?"
-first_player = Player.new
+first_player = Player.new { gets.chomp }
 puts "What is Player 2's name?"
-second_player = Player.new
+second_player = Player.new { gets.chomp }
 
 # random player goes first
 players = first_player.random_player_start(second_player)
@@ -21,31 +23,29 @@ puts "#{starting_player} will start"
 # game starts
 
 game = Game.new
-board = Board.new
-taken_fields = []
 loop do
   puts 'Input a number from 1 to 9 to choose a field!'
   move = gets.chomp.to_i
-  case game.field_validation(move, taken_fields)
-  when 'No Integer Error'
+  case game.field_validation(move)
+  when 1
     puts 'Not a valid number!'
     next
-  when 'Taken Field Error'
+  when 0
     puts 'This field is taken.'
     next
   else
-    puts board.display_board(taken_fields)
-    if game.did_i_win(taken_fields) == 'Player 1 wins'
+    puts game.board.display_board(game)
+    if game.did_i_win == 1
       p "#{starting_player} wins the game!"
       break
-    elsif game.did_i_win(taken_fields) == 'Player 2 wins'
+    elsif game.did_i_win == 2
       p "#{second_player} wins the game!"
       break
-    elsif taken_fields.length == 9
+    elsif game.taken_fields.length == 9
       p "It's a draw!"
       break
     end
-    p "#{starting_player} is next!" if game.who_is_next(taken_fields) == 'starting player is next'
-    p "#{second_player} is next!" if game.who_is_next(taken_fields) == 'second player is next'
+    p "#{starting_player} is next!" if game.who_is_next == 1
+    p "#{second_player} is next!" if game.who_is_next == 2
   end
 end
