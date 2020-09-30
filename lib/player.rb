@@ -1,8 +1,16 @@
 class Player
   attr_reader :name
   @names = []
-  def initialize(name)
-    @name = name
+  def initialize(input, error)
+    loop do
+      @name = input.call
+      if @name.to_i.zero? && !@name.empty? && !self.class.names.include?(@name)
+        self.class.names.push(@name)
+        break
+      else
+        error.call
+      end
+    end
   end
 
   class << self

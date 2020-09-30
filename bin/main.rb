@@ -9,21 +9,12 @@ require './lib/board.rb'
 puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
-loop do
-  puts "What is Player 1's name?"
-
-  puts "What is Player 2's name?"
-
-end
-first_player = Player.new {  }
-second_player = Player.new {  }
-
-if @name.to_i.zero? && !@name.empty? && !self.class.names.include?(@name)
-  self.class.names.push(@name)
-  break
-else
-  puts "Please input a valid name that's not an integer or empty or already taken."
-end
+input = Proc.new {gets.chomp}
+error = Proc.new {puts "Please input a valid name that's not an integer or empty or already taken."}
+puts "What is Player 1's name?"
+first_player = Player.new(input, error)
+puts "What is Player 2's name?"
+second_player = Player.new(input, error)
 
 # random player goes first
 players = first_player.random_player_start(second_player)
