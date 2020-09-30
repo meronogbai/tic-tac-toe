@@ -22,4 +22,3 @@ class Player
     players.shuffle
   end
 end
-

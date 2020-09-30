@@ -1,4 +1,3 @@
-
 class Board
   def initialize
     @initialize_board = ['   ', '   ', '   ', '   ', '   ', '   ', '   ', '   ', '   ']
