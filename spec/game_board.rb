@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require './lib/game.rb'
 require './lib/board.rb'
-# rubocop:disable Metrics/BlockLength
 describe Game do
   describe '#field_validation' do
     game = Game.new
@@ -39,7 +36,6 @@ describe Game do
   end
 end
 
-# rubocop:enable Metrics/BlockLength
 describe Board do
   describe '#display_board' do
     game = Game.new
