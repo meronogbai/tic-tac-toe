@@ -38,4 +38,20 @@ describe Game do
     end
   end
 end
+
 # rubocop:enable Metrics/BlockLength
+describe Board do
+  describe '#display_board' do
+    game = Game.new
+    game.taken_fields = [1, 7, 2, 6, 3]
+    it 'Displays board' do
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | x | x ',
+                                                      '-----------',
+                                                      '   |   | o ',
+                                                      '-----------',
+                                                      ' o |   |   '
+                                                    ])
+    end
+  end
+end
