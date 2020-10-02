@@ -7,8 +7,8 @@ describe Game do
       expect(game.taken_fields).to eql []
     end
     it 'Checks if we can update taken fields' do
-      game.taken_fields=[1,2,3,4,5,6,8,7]
-      expect(game.taken_fields.push(9)).to eql [1,2,3,4,5,6,8,7,9]
+      game.taken_fields = [1, 2, 3, 4, 5, 6, 8, 7]
+      expect(game.taken_fields.push(9)).to eql [1, 2, 3, 4, 5, 6, 8, 7, 9]
     end
     it 'Test game draw' do
       expect(game.taken_fields.length).to eql 9
