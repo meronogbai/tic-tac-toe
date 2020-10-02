@@ -19,6 +19,8 @@ describe Game do
     game.taken_fields = [1, 7, 2, 6, 3]
     it 'Checks if field taken' do
       expect(game.field_validation(1)).to eql(0)
+    end
+    it 'Checks if field taken negative case' do
       expect(game.field_validation(10)).not_to eql(0)
     end
     it 'Check if field not taken' do
@@ -48,23 +50,9 @@ describe Game do
     game.taken_fields = [1, 7, 2, 6, 3]
     it 'Checks if turn changer works' do
       expect(game.who_is_next).to eql(2)
-      expect(game.who_is_next).not_to eql(1)
     end
-  end
-end
-
-describe Board do
-  describe '#display_board' do
-    game = Game.new
-    game.taken_fields = [1, 7, 2, 6, 3]
-    it 'Displays board' do
-      expect(game.board.display_board(game)).to eql([
-                                                      ' x | x | x ',
-                                                      '-----------',
-                                                      '   |   | o ',
-                                                      '-----------',
-                                                      ' o |   |   '
-                                                    ])
+    it 'Checks if turn changer works in negative case' do
+      expect(game.who_is_next).not_to eql(1)
     end
   end
 end
