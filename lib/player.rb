@@ -22,3 +22,6 @@ class Player
     players.shuffle
   end
 end
+
+test = Player.new('test', 'error')
+puts test.random_player_start('marco')
