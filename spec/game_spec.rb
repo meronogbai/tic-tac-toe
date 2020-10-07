@@ -61,14 +61,22 @@ describe Game do
   end
 
   describe '#who_is_next' do
-    it 'returns 1 if it is player ones turn to play' do
-        game.field_validation(1)
-        game.field_validation(4)
-      expect(game.who_is_next).to eql(1)
-    end
-    it 'returns 2 if it is player ones turn to play' do
-      game.field_validation(1)
-      expect(game.who_is_next).to eql(2)
-    end
+  it 'returns 1 when starting player wins the game' do
+    game.field_validation(1)
+    game.field_validation(4)
+    game.field_validation(2)
+    game.field_validation(5)
+    game.field_validation(3)
+    expect(game.did_i_win).to eql(1)
   end
+  it 'returns 2 when starting player wins the game' do
+    game.field_validation(1)
+    game.field_validation(4)
+    game.field_validation(2)
+    game.field_validation(5)
+    game.field_validation(8)
+    game.field_validation(6)
+    expect(game.did_i_win).to eql(2)
+  end
+end
 end
