@@ -1,2 +1,2 @@
 # tic-tac-toe
-Ruby implementation of tic tac to
+Ruby implementation of tic tac too
