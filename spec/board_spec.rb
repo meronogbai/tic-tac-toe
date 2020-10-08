@@ -71,5 +71,16 @@ describe Enumerable do
                                                       '   | x | x '
                                                     ])
     end
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = []
+      expect(game.board.display_board(game)).to eql([
+                                                      '   |   |   ',
+                                                      '-----------',
+                                                      '   |   |   ',
+                                                      '-----------',
+                                                      '   |   |   '
+                                                    ])
+    end
   end
 end
