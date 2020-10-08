@@ -27,13 +27,13 @@ describe Game do
 
   describe '#subset?' do
     it 'checks if certain elements are included in arr' do
-      expect(game.subset?([1,2], [1,2,3])).to eql(true)
+      expect(game.subset?([1, 2], [1, 2, 3])).to eql(true)
     end
     it 'does not check for the order of elements' do
-      expect(game.subset?([3,1], [1,2,3])).to eql(true)
+      expect(game.subset?([3, 1], [1, 2, 3])).to eql(true)
     end
     it 'returns false if elements are not included in arr' do
-      expect(game.subset?([4,1], [1,2,3])).to eql(false)
+      expect(game.subset?([4, 1], [1, 2, 3])).to eql(false)
     end
   end
 
@@ -49,13 +49,13 @@ describe Game do
   end
 
   describe '#who_is_next' do
-  it 'returns 1 when starting player wins the game' do
-    game.taken_fields = [1, 4, 2, 5, 3]
-    expect(game.did_i_win).to eql(1)
+    it 'returns 1 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 3]
+      expect(game.did_i_win).to eql(1)
+    end
+    it 'returns 2 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 8, 6]
+      expect(game.did_i_win).to eql(2)
+    end
   end
-  it 'returns 2 when starting player wins the game' do
-    game.taken_fields = [1, 4, 2, 5, 8, 6]
-    expect(game.did_i_win).to eql(2)
-  end
-end
 end

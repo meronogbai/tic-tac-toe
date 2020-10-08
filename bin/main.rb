@@ -10,28 +10,32 @@ puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
 puts "What is Player 1's name?"
-names = []  
+names = []
 loop do
   first_player = gets.chomp
   player = Player.new
+  # rubocop:disable Style/NumericPredicate
   if player.name_check(first_player) == 0
+    # rubocop:enable Style/NumericPredicate
     names.push(first_player)
     break
   else
     puts "Please input a valid name that's not an integer or empty or already taken."
-  end 
+  end
 end
 
 puts "What is Player 2's name?"
 loop do
   second_player = gets.chomp
   player = Player.new
+  # rubocop:disable Style/NumericPredicate
   if !names.include?(second_player) && player.name_check(second_player) == 0
+    # rubocop:enable Style/NumericPredicate
     names.push(second_player)
     break
   else
     puts "Please input a valid name that's not an integer or empty or already taken."
-  end 
+  end
 end
 
 # random player goes first
