@@ -1,27 +1,9 @@
 class Player
-  attr_reader :name
-  @names = []
-  def initialize(input, error)
-    loop do
-      @name = input.call
-      if @name.to_i.zero? && !@name.empty? && !self.class.names.include?(@name)
-        self.class.names.push(@name)
-        break
-      else
-        error.call
+
+  def name_check(name_of_player)
+      if name_of_player.to_i.zero? && !name_of_player.empty?
+        0 
       end
-    end
   end
 
-  class << self
-    attr_reader :names
-  end
-
-  def random_player_start(second_player)
-    players = [name, second_player.name]
-    players.shuffle
-  end
 end
-
-test = Player.new('test', 'error')
-puts test.random_player_start('marco')

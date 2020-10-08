@@ -13,7 +13,7 @@ puts "What is Player 1's name?"
 names = []  
 loop do
   first_player = gets.chomp
-  player = Player.new(first_player)
+  player = Player.new
   if player.name_check(first_player) == 0
     names.push(first_player)
     break
@@ -25,7 +25,7 @@ end
 puts "What is Player 2's name?"
 loop do
   second_player = gets.chomp
-  player = Player.new(second_player)
+  player = Player.new
   if !names.include?(second_player) && player.name_check(second_player) == 0
     names.push(second_player)
     break
