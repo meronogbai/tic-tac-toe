@@ -7,11 +7,11 @@ describe Enumerable do
     it 'checks if name of player is a string' do
       expect(player.name_check('string')).to eql(0)
     end
-    it 'returns nil if name of player is not as string' do
-      expect(player.name_check(3)).to eql(nil)
+    it 'does not return 0 if name of player is not as string' do
+      expect(player.name_check(3)).not_to eql(0)
     end
-    it 'returns nil if name of player is empty' do
-      expect(player.name_check('')).to eql(nil)
+    it 'does not return 0 if name of player is empty' do
+      expect(player.name_check('')).not_to eql(0)
     end
   end
 end
