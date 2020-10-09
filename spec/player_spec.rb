@@ -1,25 +1,17 @@
 require_relative '../lib/player.rb'
-describe Player do
-  input = proc { 'Meron' }
-  error = proc do
-    puts "Please input a valid name that's not an
-    integer or empty or already taken."
-  end
-  player = Player.new(input, error)
 
-  describe '#name' do
-    it 'Checks if we can read name of player' do
-      expect(player.name).to eql 'Meron'
+describe Enumerable do
+  let(:player) { Player.new }
+
+  describe '#name_check' do
+    it 'checks if name of player is a string' do
+      expect(player.name_check('string')).to eql(0)
     end
-    it 'Checks negative case' do
-      expect(player.name).not_to eql nil
+    it 'does not return 0 if name of player is not as string' do
+      expect(player.name_check(3)).not_to eql(0)
     end
-  end
-  describe '#random_player_start' do
-    input = proc { 'Avijit' }
-    second_player = Player.new(input, error)
-    it 'checks if rng works' do
-      expect(player.random_player_start(second_player) - [player.name, second_player.name]).to eql([])
+    it 'does not return 0 if name of player is empty' do
+      expect(player.name_check('')).not_to eql(0)
     end
   end
 end

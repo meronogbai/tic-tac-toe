@@ -44,10 +44,7 @@ $ git clone https://github.com/meronokbay/tic-tac-toe
 
 ## Testing
 
-1. To run the unit tests first you need to install the rspec gem using the following command.
-   `$ gem install rspec`
-2. Navigate to the root of the project directory and run the following command to run the tests.
-   `rspec`
+To test this code download RSpec, access the repository using the terminal, write rspec and execute.
 
 ## Authors
 

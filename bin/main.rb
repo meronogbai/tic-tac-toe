@@ -9,17 +9,40 @@ require_relative '../lib/board.rb'
 puts 'Welcome to Tic Tac Toe!'
 puts 'Are you ready to play?'
 
-input = proc { gets.chomp }
-error = proc { puts "Please input a valid name that's not an integer or empty or already taken." }
 puts "What is Player 1's name?"
-first_player = Player.new(input, error)
+names = []
+loop do
+  first_player = gets.chomp
+  player = Player.new
+  # rubocop:disable Style/NumericPredicate
+  if player.name_check(first_player) == 0
+    # rubocop:enable Style/NumericPredicate
+    names.push(first_player)
+    break
+  else
+    puts "Please input a valid name that's not an integer or empty or already taken."
+  end
+end
+
 puts "What is Player 2's name?"
-second_player = Player.new(input, error)
+loop do
+  second_player = gets.chomp
+  player = Player.new
+  # rubocop:disable Style/NumericPredicate
+  if !names.include?(second_player) && player.name_check(second_player) == 0
+    # rubocop:enable Style/NumericPredicate
+    names.push(second_player)
+    break
+  else
+    puts "Please input a valid name that's not an integer or empty or already taken."
+  end
+end
 
 # random player goes first
-players = first_player.random_player_start(second_player)
-starting_player = players[0]
-second_player = players[1]
+
+starting_player = names[rand(2)]
+names.delete(starting_player)
+second_player = names[0]
 puts "#{starting_player} will start"
 
 # game starts

@@ -1,76 +1,86 @@
-require_relative '../lib/game.rb'
 require_relative '../lib/board.rb'
+require_relative '../lib/game.rb'
 
-describe Board do
+describe Enumerable do
+  let(:board) { Board.new }
+  let(:game) { Game.new }
+
   describe '#display_board' do
-    game = Game.new
-    game.taken_fields = [1, 7, 2, 6, 3]
-    it 'Displays board' do
-      expect(game.board.display_board(game)).to eql [
-        ' x | x | x ',
-        '-----------',
-        '   |   | o ',
-        '-----------',
-        ' o |   |   '
-      ]
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 4, 2, 5, 3]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | x | x ',
+                                                      '-----------',
+                                                      ' o | o |   ',
+                                                      '-----------',
+                                                      '   |   |   '
+                                                    ])
     end
-    it 'Displays board in negative case' do
-      game = Game.new
-      game.taken_fields = [1, 8, 2, 6, 3]
-      expect(game.board.display_board(game)).not_to eql [
-        ' x | x | x ',
-        '-----------',
-        '   |   | o ',
-        '-----------',
-        ' o |   |   '
-      ]
-    end
-  end
 
-  describe '#update' do
-    it 'Updates board for x symbol' do
-      game = Game.new
-      game.board.update([1, 2, 3], ' x ')
-      expect(game.board.display_board(game)).to eql [
-        ' x | x | x ',
-        '-----------',
-        '   |   |   ',
-        '-----------',
-        '   |   |   '
-      ]
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 4, 2, 5, 7, 6]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | x |   ',
+                                                      '-----------',
+                                                      ' o | o | o ',
+                                                      '-----------',
+                                                      ' x |   |   '
+                                                    ])
     end
-    it 'Updates board for o symbol' do
-      game = Game.new
-      game.board.update([4, 5, 6], ' o ')
-      expect(game.board.display_board(game)).to eql [
-        '   |   |   ',
-        '-----------',
-        ' o | o | o ',
-        '-----------',
-        '   |   |   '
-      ]
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 4, 7, 5, 2, 8, 3]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | x | x ',
+                                                      '-----------',
+                                                      ' o | o |   ',
+                                                      '-----------',
+                                                      ' x | o |   '
+                                                    ])
     end
-    it 'Updates board for o symbol in negative case' do
-      game = Game.new
-      game.board.update([4, 5, 6], ' o ')
-      expect(game.board.display_board(game)).not_to eql [
-        '   |   |   ',
-        '-----------',
-        ' o | o | x ',
-        '-----------',
-        '   |   |   '
-      ]
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 4, 2, 5, 7, 8, 6, 9, 3]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | x | x ',
+                                                      '-----------',
+                                                      ' o | o | x ',
+                                                      '-----------',
+                                                      ' x | o | o '
+                                                    ])
     end
-    it 'Updates board for x symbol in negative case' do
-      game = Game.new
-      game.board.update([1, 2, 3], ' x ')
-      expect(game.board.display_board(game)).not_to eql [
-        '   |   |   ',
-        '-----------',
-        ' x | x | x ',
-        '-----------',
-        '   |   |   '
-      ]
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 2, 3, 7, 4, 9, 6, 8]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | o | x ',
+                                                      '-----------',
+                                                      ' x |   | x ',
+                                                      '-----------',
+                                                      ' o | o | o '
+                                                    ])
+    end
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = [1, 5, 3, 2, 8, 4, 9, 6]
+      expect(game.board.display_board(game)).to eql([
+                                                      ' x | o | x ',
+                                                      '-----------',
+                                                      ' o | o | o ',
+                                                      '-----------',
+                                                      '   | x | x '
+                                                    ])
+    end
+
+    it 'splits taken fields and updates the board after every move' do
+      game.taken_fields = []
+      expect(game.board.display_board(game)).to eql([
+                                                      '   |   |   ',
+                                                      '-----------',
+                                                      '   |   |   ',
+                                                      '-----------',
+                                                      '   |   |   '
+                                                    ])
     end
   end
 end

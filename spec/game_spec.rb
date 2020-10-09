@@ -1,58 +1,65 @@
 require_relative '../lib/game.rb'
 require_relative '../lib/board.rb'
+
 describe Game do
-  describe '#taken_fields' do
-    game = Game.new
-    it 'Checks if we can read taken fields' do
-      expect(game.taken_fields).to eql []
-    end
-    it 'Checks if we can update taken fields' do
-      game.taken_fields = [1, 2, 3, 4, 5, 6, 8, 7]
-      expect(game.taken_fields.push(9)).to eql [1, 2, 3, 4, 5, 6, 8, 7, 9]
-    end
-    it 'Test game draw' do
-      expect(game.taken_fields.length).to eql 9
-    end
-  end
+  let(:game) { Game.new }
+
   describe '#field_validation' do
-    game = Game.new
-    game.taken_fields = [1, 7, 2, 6, 3]
-    it 'Checks if field taken' do
+    it 'returns 1 if input is not a number between 1 and 9' do
+      expect(game.field_validation(10)).to eql(1)
+    end
+    it 'returns 0 if taken_fields already includes input' do
+      game.field_validation(1)
       expect(game.field_validation(1)).to eql(0)
     end
-    it 'Checks if field taken negative case' do
-      expect(game.field_validation(10)).not_to eql(0)
-    end
-    it 'Check if field not taken' do
-      expect(game.field_validation(4)).to eql(game.taken_fields.push(4))
+    it 'pushes input to taken_fields if not already there' do
+      game.field_validation(1)
+      expect(game.field_validation(2)).to eql([1, 2])
     end
   end
+
   describe '#split_player_moves' do
-    game = Game.new
-    game.taken_fields = [1, 7, 2, 6, 3]
-    it 'Checks if split player moves works' do
-      expect(game.split_player_moves).to eql([[1, 2, 3], [7, 6]])
+    it 'splits taken_fields into two arrays with odd and even indexes respectively' do
+      game.taken_fields = [1, 2, 3, 4]
+      expect(game.split_player_moves).to eql([[1, 3], [2, 4]])
     end
   end
+
+  describe '#subset?' do
+    it 'checks if certain elements are included in arr' do
+      expect(game.subset?([1, 2], [1, 2, 3])).to eql(true)
+    end
+    it 'does not check for the order of elements' do
+      expect(game.subset?([3, 1], [1, 2, 3])).not_to eql(false)
+    end
+    it 'returns false if elements are not included in arr' do
+      expect(game.subset?([4, 1], [1, 2, 3])).to eql(false)
+    end
+  end
+
   describe '#did_i_win' do
-    game = Game.new
-    it 'Checks if player 1 wins the game' do
-      game.taken_fields = [1, 7, 2, 6, 3]
+    it 'returns 1 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 3]
       expect(game.did_i_win).to eql(1)
     end
-    it 'Checks if player 1 wins the game' do
-      game.taken_fields = [7, 1, 6, 2, 5, 3]
+    it 'returns 2 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 8, 6]
       expect(game.did_i_win).to eql(2)
     end
-  end
-  describe '#who_is_next' do
-    game = Game.new
-    game.taken_fields = [1, 7, 2, 6, 3]
-    it 'Checks if turn changer works' do
-      expect(game.who_is_next).to eql(2)
+    it 'does not return 1 or 2 if no one has won' do
+      game.taken_fields = [1, 4, 2, 5, 8, 9]
+      expect(game.did_i_win).not_to eql(2 || 1)
     end
-    it 'Checks if turn changer works in negative case' do
-      expect(game.who_is_next).not_to eql(1)
+  end
+
+  describe '#who_is_next' do
+    it 'returns 1 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 3]
+      expect(game.did_i_win).to eql(1)
+    end
+    it 'returns 2 when starting player wins the game' do
+      game.taken_fields = [1, 4, 2, 5, 8, 6]
+      expect(game.did_i_win).to eql(2)
     end
   end
 end
